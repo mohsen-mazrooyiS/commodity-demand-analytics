@@ -1,61 +1,53 @@
 -- ============================================================================
 -- Armani Middle East Trading — Star Schema
 -- Fact table: fact_sales (one row per product-week)
--- Dimensions: dim_product, dim_date, dim_customer_segment, dim_region
+-- Dimensions: dim_product, dim_date
+--
+-- NOTE: the real Sample_Data.xlsx has no Region, Customer_Segment, or
+-- customer/credit-level fields, so those dimensions from the v1 draft
+-- schema are dropped. See README "Data limitations" section for how this
+-- affects the Sales & Credit KPIs (DSO, Customer Default Risk).
 -- ============================================================================
 
 DROP TABLE IF EXISTS fact_sales;
 DROP TABLE IF EXISTS dim_product;
 DROP TABLE IF EXISTS dim_date;
-DROP TABLE IF EXISTS dim_customer_segment;
-DROP TABLE IF EXISTS dim_region;
 
 CREATE TABLE dim_product (
     product_id   INTEGER PRIMARY KEY AUTOINCREMENT,
     product_name TEXT UNIQUE NOT NULL
 );
 
-CREATE TABLE dim_region (
-    region_id   INTEGER PRIMARY KEY AUTOINCREMENT,
-    region_name TEXT UNIQUE NOT NULL
-);
-
-CREATE TABLE dim_customer_segment (
-    segment_id   INTEGER PRIMARY KEY AUTOINCREMENT,
-    segment_name TEXT UNIQUE NOT NULL
-);
-
 CREATE TABLE dim_date (
-    date_id     INTEGER PRIMARY KEY AUTOINCREMENT,
+    date_id       INTEGER PRIMARY KEY AUTOINCREMENT,
     calendar_date DATE UNIQUE NOT NULL,
-    week_number   INTEGER NOT NULL,
+    week_number   INTEGER UNIQUE NOT NULL,
     month         INTEGER NOT NULL,
     quarter       INTEGER NOT NULL,
     year          INTEGER NOT NULL
 );
 
 CREATE TABLE fact_sales (
-    sale_id                     INTEGER PRIMARY KEY AUTOINCREMENT,
-    date_id                     INTEGER NOT NULL REFERENCES dim_date(date_id),
-    product_id                  INTEGER NOT NULL REFERENCES dim_product(product_id),
-    region_id                   INTEGER NOT NULL REFERENCES dim_region(region_id),
-    segment_id                  INTEGER NOT NULL REFERENCES dim_customer_segment(segment_id),
+    sale_id                   INTEGER PRIMARY KEY AUTOINCREMENT,
+    date_id                   INTEGER NOT NULL REFERENCES dim_date(date_id),
+    product_id                INTEGER NOT NULL REFERENCES dim_product(product_id),
 
-    sales_units                 REAL NOT NULL,
-    cogs_per_unit                REAL NOT NULL,
-    price_per_unit              REAL NOT NULL,
-    inventory_level             REAL NOT NULL,
-    days_sales_outstanding_input REAL,
-    customer_credit_limit       REAL,
-    customer_outstanding_balance REAL,
-    demand_actual               REAL NOT NULL,
+    sales_units               REAL NOT NULL,   -- inventory-censored: see is_stockout
+    cogs_per_unit             REAL NOT NULL,
+    price_per_unit            REAL NOT NULL,
+    inventory_level           REAL NOT NULL,
+    demand_actual             REAL NOT NULL,   -- uncensored demand estimate - the forecasting target
 
-    -- derived financial fields, computed once during load (not re-derived
-    -- ad-hoc downstream, so every consumer sees the same numbers)
-    revenue                     REAL NOT NULL,
-    gross_profit                REAL NOT NULL,
+    revenue                   REAL NOT NULL,
+    gross_profit              REAL NOT NULL,
+    operating_profit          REAL NOT NULL,
+    inventory_turnover_ratio  REAL,
+    gross_profit_margin       REAL,
+    revenue_growth            REAL,            -- capped, see cleaning report for winsorization details
 
-    UNIQUE(date_id, product_id, region_id, segment_id)
+    is_stockout               INTEGER NOT NULL DEFAULT 0,  -- 1 if Sales_Units=0 & Inventory_Level=0
+
+    UNIQUE(date_id, product_id)
 );
 
 CREATE INDEX idx_fact_sales_product ON fact_sales(product_id);
