@@ -84,6 +84,23 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+**macOS users:** LightGBM's macOS wheel depends on the OpenMP runtime
+(`libomp`), which pip cannot install itself. If `import lightgbm` fails
+with an `OSError: ... Library not loaded: @rpath/libomp.dylib` error, run:
+
+```bash
+brew install libomp
+```
+
+then restart your Python kernel/session (a simple re-run of the import
+won't pick up the newly installed library).
+
+**Running notebooks:** all scripts resolve `data/`, `sql/`, etc. relative
+to the project root via `src/paths.py`, regardless of the notebook's
+working directory — so `notebooks/*.ipynb` can `from src.etl import ...`
+and `from src.forecasting import ...` directly without needing an `os.chdir()`
+workaround first.
+
 ## Running Stage 1 (ETL)
 
 ```bash
@@ -196,6 +213,7 @@ armani-demand-forecast/
 ├── sql/
 │   └── schema.sql      # star schema DDL (dim_product, dim_date, fact_sales)
 ├── src/
+│   ├── paths.py                       # project-root-relative path resolution (works from notebooks too)
 │   ├── generate_synthetic_data.py   # superseded — kept for reference only
 │   ├── etl.py                        # ingestion, cleaning, validation, DB load
 │   └── forecasting.py                # per-product LightGBM demand forecasting + walk-forward CV
