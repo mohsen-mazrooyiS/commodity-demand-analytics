@@ -7,8 +7,8 @@ reporting, and a dynamic pricing framework.
 ## Status
 
 - [x] **Stage 1 — Data Engineering, ETL & Database**
-- [x] **Stage 2 — Time-series demand forecasting & factor analysis** (this commit)
-- [ ] Stage 3 — Financial & operational KPI dashboard
+- [x] **Stage 2 — Time-series demand forecasting & factor analysis**
+- [x] **Stage 3 — Financial & operational KPI dashboard** (this commit)
 - [ ] Stage 4 — Dynamic pricing & risk strategy
 
 ## Architecture
@@ -201,6 +201,82 @@ Produces:
 - `data/processed/cv_metrics.csv` — per-product, per-fold MAE/RMSE/MAPE for both the model and the baseline
 - `data/processed/future_forecast.csv` — the 26-week-ahead forecast for all 30 products
 
+## Stage 3 — KPI Dashboard
+
+**Built with Streamlit + Plotly** (chosen over Power BI/Tableau to keep the
+whole pipeline in one reproducible, version-controlled Python stack — no
+separate paid tool or manual refresh step required).
+
+```bash
+streamlit run dashboard/app.py
+```
+
+Business logic (`src/kpis.py`) is kept separate from presentation
+(`dashboard/app.py`) so every KPI can be unit-tested independently of the
+UI (see `python src/kpis.py` for a plain-console version of the same
+numbers).
+
+### Financial KPIs (trusted, provided fields)
+
+Gross Profit Margin, Revenue Growth, and Operating Profit come straight
+from the source file's `Revenue`, `Gross_Profit`, and `Operating_Profit`
+columns, which were cross-validated against their raw components in Stage
+1 (`Revenue = Sales_Units × Price_Per_Unit`, etc. — 0 mismatches). Revenue
+Growth is recomputed as trailing-13-week-over-prior-13-week rather than
+the source file's week-over-week figure, which is far too noisy to read
+meaningfully at a glance.
+
+### Operational KPIs — recomputed, not trusted from the source file
+
+**Finding:** unlike Revenue/Gross_Profit, the provided
+`Inventory_Turnover_Ratio` does **not** reconcile with any combination of
+`Cost_of_Goods_Sold_COGS`, `Sales_Units`, or `Inventory_Level` — it spans
+0.00–1.00 in flat 0.01 increments with no relationship to the underlying
+numbers, suggesting it's an independently-generated placeholder rather
+than a real computed ratio.
+
+The dashboard recomputes it properly:
+```
+Annualized Inventory Turnover = (Trailing 52-week COGS) / (Trailing 52-week average Inventory)
+Days Sales of Inventory (DSI) = 365 / Annualized Turnover
+```
+Some products still show extreme values (e.g. Rice - White at ~0.15 days,
+Spices - Turmeric at ~298 days) — this reflects how inventory levels were
+generated in the provided sample data (some products carry inventory
+levels that are tiny relative to weekly COGS, others carry very large
+buffer stock), not a computation error. Flagged in the dashboard for the
+business to sanity-check against real operations.
+
+### Sales & Credit KPIs — data limitation, handled transparently
+
+The brief asks for **Customer Default Risk Rating** and **Days Sales
+Outstanding (DSO)**. This dataset has **no customer identity, invoice, or
+payment-term data of any kind** — only product-level weekly sales,
+inventory, and pricing. These cannot be genuinely computed from what's
+provided.
+
+Rather than fabricate numbers that look like real credit metrics, the
+dashboard shows an explicitly-labeled **illustrative risk proxy** built
+from product-level revenue volatility and stockout frequency (Low /
+Medium / High), with a permanent "Data limitations" tab explaining exactly
+why and what it isn't. This is presented as an honest placeholder for what
+real customer/credit data would enable — not disguised as the real thing.
+
+### Inventory risk alerts (genuinely data-grounded)
+
+Flags any product whose current inventory covers fewer than 4 weeks of
+its own forecasted demand (from Stage 2's 26-week forecast). Verified
+against underlying numbers — e.g. Barley: 2,500 units on hand vs. ~2,884
+units/week forecasted demand → correctly flagged, real signal, not a
+false positive from stale data.
+
+### Verification
+
+Tested end-to-end: Streamlit server starts and serves cleanly
+(`/_stcore/health` → `ok`), and every KPI function plus every format
+string the dashboard uses was exercised directly against all 30 products
+with zero errors before this was committed.
+
 ## Repository structure
 
 ```
@@ -216,7 +292,10 @@ armani-demand-forecast/
 │   ├── paths.py                       # project-root-relative path resolution (works from notebooks too)
 │   ├── generate_synthetic_data.py   # superseded — kept for reference only
 │   ├── etl.py                        # ingestion, cleaning, validation, DB load
-│   └── forecasting.py                # per-product LightGBM demand forecasting + walk-forward CV
+│   ├── forecasting.py                # per-product LightGBM demand forecasting + walk-forward CV
+│   └── kpis.py                       # Financial/Operational/Sales & Credit KPI business logic
+├── dashboard/
+│   └── app.py                         # Streamlit KPI dashboard (run: streamlit run dashboard/app.py)
 ├── notebooks/           # exploratory analysis (Stage 2+)
 └── dashboard/           # Streamlit app (Stage 3+)
 ```
