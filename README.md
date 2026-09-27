@@ -6,8 +6,8 @@ reporting, and a dynamic pricing framework.
 
 ## Status
 
-- [x] **Stage 1 — Data Engineering, ETL & Database** (this commit)
-- [ ] Stage 2 — Time-series demand forecasting & factor analysis
+- [x] **Stage 1 — Data Engineering, ETL & Database**
+- [x] **Stage 2 — Time-series demand forecasting & factor analysis** (this commit)
 - [ ] Stage 3 — Financial & operational KPI dashboard
 - [ ] Stage 4 — Dynamic pricing & risk strategy
 
@@ -102,6 +102,88 @@ Cleaning decisions (imputation method, outlier handling, dedup counts) are
 logged to stdout via `CleaningReport` — see `etl.py` for the full report
 generated on the most recent run.
 
+## Stage 2 — Demand Forecasting
+
+**Approach: 30 separate per-product LightGBM models** (per-product chosen
+over a single global model — these 30 commodities have genuinely different
+demand dynamics, e.g. Rice vs. Spices vs. Dairy, and per-product data volume
+(~260 weeks) is enough to support a dedicated small model per product
+without the complexity of a global multi-product architecture).
+
+### Model iteration: what we tried first, and why it changed
+
+The first design followed the "textbook" hybrid: MSTL-decompose each
+product's demand into trend + seasonal(52) + seasonal(4), then train
+LightGBM on the leftover remainder only. On walk-forward CV, **this hybrid
+lost to a naive seasonal baseline** (this week's demand = demand 52 weeks
+ago) on every product tested.
+
+Root cause, confirmed via autocorrelation analysis: demand shows strong
+signal at lag 1 (~0.70, short-term momentum) and lag 52 (~0.69, genuine
+annual seasonality) — real, usable signal. But with only ~5 years of
+weekly history, MSTL sees just 2.5–5 annual cycles per training window.
+Its smoothed seasonal component blurs the exact product-specific
+week-to-week pattern that the raw lag-52 value captures precisely, and the
+extra seasonal(4) term mostly fit noise as if it were a real monthly
+cycle. Decomposing first and extrapolating the pieces separately threw
+away exactly the sharp signal a feature-based model could use directly.
+
+**Final design:** one LightGBM regressor per product, trained directly on
+`Demand_Forecast` using lag features (1, 2, 3, 4, 8, 12, 26, **52** weeks),
+rolling means/stds, calendar (sin/cos of week-of-year, month, quarter),
+lagged price/COGS/inventory, and a recent-stockout flag. MSTL is kept as a
+**descriptive factor-analysis tool** (`decompose_for_analysis()`) to
+visualize and explain trend/seasonal/residual structure — satisfying the
+brief's "factor analysis" ask — but it's no longer inside the prediction
+path itself.
+
+### Evaluation
+
+Walk-forward (rolling-origin), **fully recursive** cross-validation: each
+fold predicts week 1, appends that prediction, recomputes lag/rolling
+features from the now-extended series, predicts week 2, and so on — the
+same mechanism used for the real 26-week-ahead forecast, so CV honestly
+reflects production performance rather than leaking future actuals into
+lag features.
+
+| Model | Mean MAE | Mean RMSE | Mean MAPE |
+|---|---|---|---|
+| Baseline (seasonal-naive, demand 52 weeks ago) | 254.2 | 312.8 | 14.30% |
+| **LightGBM (direct, per-product)** | **219.1** | **270.9** | **12.61%** |
+
+The model beats the seasonal-naive baseline on **26 of 30 products**
+(87%), improving average MAPE by ~12%. The four products where the
+baseline still wins (Cocoa Powder, Milk Powder - Whole, Spices - Turmeric,
+Sugar - White Refined) are flagged in `data/processed/cv_metrics.csv` for
+follow-up — likely candidates for a longer lookback window or
+product-specific hyperparameter tuning in a future iteration, rather than
+a sign the overall approach is wrong.
+
+### Leakage safeguards
+
+- `Sales_Units` is excluded from features entirely — it's inventory-censored
+  (see ETL findings: ~17% of weeks are stockouts where Sales_Units=0 but
+  true demand wasn't) and would teach the model to under-forecast during
+  stockout recovery.
+- `Price_Per_Unit`, `Cost_of_Goods_Sold_COGS`, `Inventory_Level` are used
+  only in **lagged** form (1-week and 4-week lags), since it's unclear
+  whether price is set in advance (safe) or reacts to demand (leakage) —
+  lagging is the conservative default.
+- Future exogenous drivers (price, COGS, inventory) are unknown at
+  forecast time, so the recursive forecaster carries the last observed
+  values forward — a documented assumption, easily replaced with a real
+  pricing/inventory plan if the business has one.
+
+### Running it
+
+```bash
+python src/forecasting.py
+```
+
+Produces:
+- `data/processed/cv_metrics.csv` — per-product, per-fold MAE/RMSE/MAPE for both the model and the baseline
+- `data/processed/future_forecast.csv` — the 26-week-ahead forecast for all 30 products
+
 ## Repository structure
 
 ```
@@ -115,7 +197,8 @@ armani-demand-forecast/
 │   └── schema.sql      # star schema DDL (dim_product, dim_date, fact_sales)
 ├── src/
 │   ├── generate_synthetic_data.py   # superseded — kept for reference only
-│   └── etl.py                        # ingestion, cleaning, validation, DB load
+│   ├── etl.py                        # ingestion, cleaning, validation, DB load
+│   └── forecasting.py                # per-product LightGBM demand forecasting + walk-forward CV
 ├── notebooks/           # exploratory analysis (Stage 2+)
 └── dashboard/           # Streamlit app (Stage 3+)
 ```
