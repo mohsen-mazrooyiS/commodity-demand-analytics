@@ -8,8 +8,8 @@ reporting, and a dynamic pricing framework.
 
 - [x] **Stage 1 — Data Engineering, ETL & Database**
 - [x] **Stage 2 — Time-series demand forecasting & factor analysis**
-- [x] **Stage 3 — Financial & operational KPI dashboard** (this commit)
-- [ ] Stage 4 — Dynamic pricing & risk strategy
+- [x] **Stage 3 — Financial & operational KPI dashboard**
+- [x] **Stage 4 — Dynamic pricing & risk strategy** (this commit)
 
 ## Architecture
 
@@ -277,6 +277,33 @@ Tested end-to-end: Streamlit server starts and serves cleanly
 string the dashboard uses was exercised directly against all 30 products
 with zero errors before this was committed.
 
+## Stage 4 — Dynamic Pricing & Risk Strategy
+
+Full mathematical write-up, calibration story, and worked examples in
+[`docs/pricing_strategy.md`](docs/pricing_strategy.md). Summary:
+
+A rule-based pricing engine (`src/pricing.py`) recommends a price
+adjustment per product from `demand_index` (near-term forecast vs.
+trailing 52-week average) and `inventory_gap` (current stock vs. a 4-week
+target — same threshold as Stage 3's stockout alerts), then applies two
+guardrails: a **credit-risk guardrail** (blocks/halves discounts on
+high/medium-risk products, using the same proxy from Stage 3) and a
+**competitive guardrail** (hard-caps total swing at ±15%, standing in for
+a real competitor price feed this dataset doesn't have).
+
+**Calibration finding worth flagging:** the first parameter set made the
+competitive guardrail fire on 27/30 products (90%) — the "guardrail" had
+become the actual policy. Root cause: most products in this dataset sit
+well below their 4-week inventory target at the latest observed week
+(consistent with Stage 1's stockout finding), so the inventory term
+dominated. Recalibrated elasticities down; the guardrail now fires on 5/30
+(17%), a real safety net rather than a default clamp.
+
+Interactive: run `streamlit run dashboard/app.py` and open the **Pricing
+engine** tab — all four policy parameters are live sliders, and every
+recommendation shows its full audit trail (which multiplier moved it, by
+how much, which guardrail fired and why).
+
 ## Repository structure
 
 ```
@@ -293,9 +320,12 @@ armani-demand-forecast/
 │   ├── generate_synthetic_data.py   # superseded — kept for reference only
 │   ├── etl.py                        # ingestion, cleaning, validation, DB load
 │   ├── forecasting.py                # per-product LightGBM demand forecasting + walk-forward CV
-│   └── kpis.py                       # Financial/Operational/Sales & Credit KPI business logic
+│   ├── kpis.py                       # Financial/Operational/Sales & Credit KPI business logic
+│   └── pricing.py                    # Dynamic pricing engine: demand + inventory rules, guardrails
+├── docs/
+│   └── pricing_strategy.md            # Stage 4 deliverable: full mathematical write-up
 ├── dashboard/
-│   └── app.py                         # Streamlit KPI dashboard (run: streamlit run dashboard/app.py)
+│   └── app.py                         # Streamlit dashboard (KPIs + live pricing engine)
 ├── notebooks/           # exploratory analysis (Stage 2+)
 └── dashboard/           # Streamlit app (Stage 3+)
 ```

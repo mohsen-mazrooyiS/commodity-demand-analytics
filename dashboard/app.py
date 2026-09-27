@@ -33,6 +33,10 @@ from src.kpis import (
     load_full_history, compute_financial_kpis, compute_operational_kpis,
     compute_risk_proxy, compute_inventory_alert, build_kpi_summary,
 )
+from src.pricing import (
+    compute_price_recommendation, build_pricing_table,
+    PRICE_ELASTICITY_DEMAND, PRICE_ELASTICITY_INVENTORY, TARGET_WEEKS_OF_COVER, MAX_PRICE_SWING,
+)
 
 st.set_page_config(page_title="Armani Trading — Demand & KPI Dashboard", layout="wide")
 
@@ -48,7 +52,9 @@ st.markdown("""
     .limitation-box {
         background-color: #FBF2ED; border-left: 4px solid #C98A2C;
         padding: 0.9rem 1.1rem; border-radius: 4px; font-size: 0.92rem;
+        color: #2B2B2B;
     }
+    .limitation-box b { color: #1A1A1A; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -80,7 +86,9 @@ forecast_df = get_forecast()
 st.title("Armani Middle East Trading")
 st.caption("Demand, financial, and inventory-risk overview across 30 commodities")
 
-tab_overview, tab_product, tab_limitations = st.tabs(["Portfolio overview", "Product deep-dive", "Data limitations"])
+tab_overview, tab_product, tab_pricing, tab_limitations = st.tabs(
+    ["Portfolio overview", "Product deep-dive", "Pricing engine", "Data limitations"]
+)
 
 
 # =============================================================================
@@ -200,7 +208,74 @@ with tab_product:
 
 
 # =============================================================================
-# TAB 3 — DATA LIMITATIONS (transparency, not buried in a footnote)
+# TAB 3 — PRICING ENGINE (Deliverable 4, live/interactive)
+# =============================================================================
+with tab_pricing:
+    st.subheader("Dynamic pricing recommendations")
+    st.caption(
+        "Rule-based, auditable pricing: demand and inventory positioning drive the "
+        "recommendation, then credit-risk and competitive guardrails cap it. "
+        "See docs/pricing_strategy.md for the full mathematical write-up."
+    )
+
+    with st.expander("Policy parameters (adjust to see recommendations update live)", expanded=False):
+        pc1, pc2, pc3, pc4 = st.columns(4)
+        elast_demand = pc1.slider("Demand elasticity", 0.0, 0.5, PRICE_ELASTICITY_DEMAND, 0.01)
+        elast_inventory = pc2.slider("Inventory elasticity", 0.0, 0.5, PRICE_ELASTICITY_INVENTORY, 0.01)
+        target_weeks = pc3.slider("Target weeks of cover", 1.0, 8.0, TARGET_WEEKS_OF_COVER, 0.5)
+        max_swing = pc4.slider("Max price swing (competitive guardrail)", 0.05, 0.40, MAX_PRICE_SWING, 0.01)
+
+    with st.spinner("Computing pricing recommendations..."):
+        summary_for_pricing = get_kpi_summary(engine, products, forecast_df)
+        pricing_table = build_pricing_table(
+            engine, forecast_df, summary_for_pricing, products,
+            elasticity_demand=elast_demand, elasticity_inventory=elast_inventory,
+            target_weeks_cover=target_weeks, max_swing=max_swing,
+        )
+
+    n_up = int((pricing_table["price_change_pct"] > 0.005).sum())
+    n_down = int((pricing_table["price_change_pct"] < -0.005).sum())
+    n_capped = int(pricing_table["competitive_cap_applied"].sum())
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Products recommended for a price increase", n_up)
+    c2.metric("Products recommended for a markdown", n_down)
+    c3.metric("Competitive guardrail engaged", f"{n_capped} / {len(pricing_table)}")
+
+    st.subheader("Recommendations by product")
+    display_pricing_cols = {
+        "Product": "Product", "current_price": "Current price", "recommended_price": "Recommended price",
+        "price_change_pct": "Change", "quadrant": "Rule triggered",
+        "risk_label": "Risk proxy", "risk_guardrail_note": "Credit guardrail",
+    }
+    st.dataframe(
+        pricing_table[list(display_pricing_cols.keys())].rename(columns=display_pricing_cols)
+        .sort_values("Change")
+        .style.format({"Current price": "${:.2f}", "Recommended price": "${:.2f}", "Change": "{:+.1%}"}),
+        use_container_width=True, hide_index=True, height=460,
+    )
+
+    st.subheader("Rule breakdown for one product")
+    pricing_product = st.selectbox("Select a product", products, key="pricing_product_select")
+    row = pricing_table[pricing_table["Product"] == pricing_product].iloc[0]
+
+    pc1, pc2, pc3 = st.columns(3)
+    pc1.metric("Demand index", f"{row['demand_index']:.2f}", help="Forecasted near-term demand ÷ trailing 52-week average")
+    pc2.metric("Weeks of inventory cover", f"{row['weeks_of_cover']:.1f}")
+    pc3.metric("Recommended change", f"{row['price_change_pct']:+.1%}")
+
+    st.markdown(f"""
+- **Demand multiplier:** {row['demand_multiplier']:.3f}
+- **Inventory multiplier:** {row['inventory_multiplier']:.3f}
+- **Combined (before guardrails):** {row['raw_multiplier']:.3f}
+- **Credit-risk guardrail:** {row['risk_guardrail_note']}
+- **Competitive guardrail engaged:** {"Yes — capped at the max allowed swing" if row['competitive_cap_applied'] else "No"}
+- **Rule triggered:** {row['quadrant']}
+""")
+
+
+# =============================================================================
+# TAB 4 — DATA LIMITATIONS (transparency, not buried in a footnote)
 # =============================================================================
 with tab_limitations:
     st.subheader("What this dashboard can and can't show, and why")
