@@ -29,21 +29,52 @@ Raw data (Excel/CSV)
   [ Stage 2: forecasting ] -> [ Stage 3: KPI dashboard ] -> [ Stage 4: pricing engine ]
 ```
 
-## Key assumption: the provided data vs. this build
+## The real dataset: schema, findings, and limitations
 
-The assessment brief references `Sample_Data.xlsx` with (at minimum) `Week`,
-`Product`, `Sales_Units`, and `Cost_of_Goods_Sold_COGS`. The KPI/pricing
-requirements (Gross Margin, DSO, Customer Default Risk, Inventory Turnover)
-need price, inventory, and customer/credit fields that weren't visible in
-the schema excerpt I received, so **`src/generate_synthetic_data.py`
-generates a placeholder dataset with the full schema I'd expect**, with
-realistic data-quality issues (nulls, duplicates, outliers, bad casing)
-deliberately injected so the ETL step has real work to do.
+`data/raw/Sample_Data.xlsx` (the real file provided for this assessment)
+contains 7,839 rows: 30 products x ~260 weeks, with `Week`, `Product`,
+`Sales_Units`, `Cost_of_Goods_Sold_COGS`, `Inventory_Level`,
+`Demand_Forecast`, `Price_Per_Unit`, and pre-computed `Revenue`,
+`Gross_Profit`, `Operating_Profit`, `Inventory_Turnover_Ratio`,
+`Gross_Profit_Margin`, and `Revenue_Growth`.
 
-**To use the real dataset:** drop `Sample_Data.xlsx` into `data/raw/` and
-run `etl.py` with that path instead — no other code changes needed as long
-as the column names match `REQUIRED_COLUMNS` in `etl.py` (the pipeline
-will raise a clear error listing any missing columns otherwise).
+**Key finding — Sales_Units is inventory-censored.** ~17% of rows (429
+after cleaning) have `Sales_Units = 0` coinciding with `Inventory_Level =
+0`. These are stockout weeks: `Demand_Forecast` remains populated and
+non-zero in these weeks (customers wanted the product, it wasn't
+available), while `Sales_Units` only reflects what was actually sold. This
+is why `Demand_Forecast`, not `Sales_Units`, is the correct forecasting
+target, and why `Sales_Units` needs care as a model feature. We flag these
+rows with `is_stockout` rather than silently treating 0 as a real demand
+signal.
+
+**Data-quality issues found and how they were handled:**
+
+| Issue | Approach | Rationale |
+|---|---|---|
+| 39 exact duplicate (Week, Product) rows | Dropped, kept first | No legitimate reason for identical rows at this grain |
+| `Demand_Forecast` missing in 606 rows (7.8%) | Linear interpolation, per product, time-ordered | This is an ordered weekly series — interpolation preserves trend/seasonality far better than a flat median fill |
+| `Sales_Units` missing in 16 rows | Same, linear interpolation per product | Same reasoning; these are the rows where `Revenue`/`Gross_Profit` will no longer exactly back-calculate (expected, documented in code) |
+| `Revenue_Growth` = `inf` in 895 rows | Replaced with NaN, then capped at +/-500%, then filled | These are legitimate divide-by-zero results (prior week's revenue was genuinely $0 during a stockout), not data errors — capping preserves the "just recovered from stockout" signal without breaking downstream models |
+| Provided `Revenue`/`Gross_Profit` vs. raw components | Cross-validated (`Revenue = Sales_Units x Price_Per_Unit`, `Gross_Profit = Revenue - COGS x Sales_Units`) | 0 mismatches among non-null values — the provided derived fields are trustworthy, not recomputed |
+| No `Date` column, only sequential `Week` (1-260) | Synthesized a calendar date, anchoring Week 1 = 2021-01-06 | **Documented assumption**, not a fact recovered from data — used only to derive month/quarter/year seasonal features |
+
+**Data limitations vs. the assessment brief.** The brief's KPI table asks
+for `Customer Default Risk Rating` and `Days Sales Outstanding` under
+"Sales & Credit" — this requires customer-level or transaction-level credit
+data (payment terms, invoice aging, customer identity), none of which
+exists in this file. There's no `Region` or `Customer_Segment` either.
+Stage 3 will compute every KPI that *is* supportable by this data (Gross
+Margin, Revenue Growth, Operating Profit, Inventory Turnover, Days Sales
+of Inventory) and will clearly label the credit-risk metrics as
+**illustrative/proxy logic** built from product-level financial patterns
+(e.g., revenue volatility as a rough proxy for demand-driven payment risk)
+rather than real customer credit behavior — flagged as such in the
+dashboard, not presented as if it were measured.
+
+An earlier draft of this pipeline (`src/generate_synthetic_data.py`) used
+placeholder synthetic data before the real file was available. It's kept
+in the repo for reference but is no longer part of the active pipeline.
 
 ## Setup
 
@@ -71,17 +102,6 @@ Cleaning decisions (imputation method, outlier handling, dedup counts) are
 logged to stdout via `CleaningReport` — see `etl.py` for the full report
 generated on the most recent run.
 
-## Data cleaning decisions
-
-| Issue | Approach | Rationale |
-|---|---|---|
-| Missing numeric values | Median imputation, grouped by `Product` | Preserves product-level scale (a missing Rice price shouldn't be filled with a Coffee median) |
-| Exact duplicate rows | Dropped | No legitimate reason for identical rows at this grain |
-| Extreme outliers (e.g. 100x sales spike) | Capped via IQR (k=3, conservative) | Caps data-entry errors without discarding legitimate high-demand weeks |
-| Negative cost/price values | Took absolute value | Treated as sign-entry errors, not genuine negative costs |
-| Inconsistent casing/whitespace (`"RICE  "` vs `"Rice"`) | Standardized via `.str.strip().str.title()` | Prevents the same product being split into multiple dimension rows |
-| Rows missing both `Week`/`Date`/`Product` and any demand signal | Dropped | Unrecoverable — no reasonable imputation for a missing primary key or missing target |
-
 ## Repository structure
 
 ```
@@ -89,13 +109,13 @@ armani-demand-forecast/
 ├── README.md
 ├── requirements.txt
 ├── data/
-│   ├── raw/            # source files (place Sample_Data.xlsx here)
+│   ├── raw/            # Sample_Data.xlsx (real data, provided by Armani)
 │   └── processed/      # cleaned parquet + SQLite DB (generated, git-ignored)
 ├── sql/
-│   └── schema.sql      # star schema DDL
+│   └── schema.sql      # star schema DDL (dim_product, dim_date, fact_sales)
 ├── src/
-│   ├── generate_synthetic_data.py   # placeholder data (remove once real file provided)
-│   └── etl.py                        # ingestion, cleaning, DB load
+│   ├── generate_synthetic_data.py   # superseded — kept for reference only
+│   └── etl.py                        # ingestion, cleaning, validation, DB load
 ├── notebooks/           # exploratory analysis (Stage 2+)
 └── dashboard/           # Streamlit app (Stage 3+)
 ```
