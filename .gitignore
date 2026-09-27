@@ -4,5 +4,5 @@ __pycache__/
 .DS_Store
 data/processed/*.db
 data/processed/*.parquet
-data/raw/*.xlsx
+data/raw/*.xlsx\n!data/raw/Sample_Data.xlsx
 .ipynb_checkpoints/
