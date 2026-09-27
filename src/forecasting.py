@@ -62,6 +62,11 @@ from sqlalchemy import create_engine
 from statsmodels.tsa.seasonal import MSTL
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
+try:
+    from src.paths import resolve
+except ImportError:
+    from paths import resolve
+
 warnings.filterwarnings("ignore", category=UserWarning)
 
 HORIZON = 26          # 6 months of weekly data
@@ -73,7 +78,8 @@ MIN_TRAIN_SIZE = 130  # ~2.5 years before the first fold
 # ---------------------------------------------------------------------------
 # Data access
 # ---------------------------------------------------------------------------
-def get_engine(db_path: str = "data/processed/armani_trading.db"):
+def get_engine(db_path: str = None):
+    db_path = db_path or resolve("data/processed/armani_trading.db")
     return create_engine(f"sqlite:///{db_path}")
 
 
@@ -276,7 +282,7 @@ def forecast_future_product(df: pd.DataFrame, target_col: str = "Demand_Forecast
 # ---------------------------------------------------------------------------
 # MAIN: run for all products
 # ---------------------------------------------------------------------------
-def run_all_products(db_path: str = "data/processed/armani_trading.db"):
+def run_all_products(db_path: str = None):
     engine = get_engine(db_path)
     products = list_products(engine)
     print(f"Running forecasting pipeline for {len(products)} products...")
@@ -300,9 +306,10 @@ def run_all_products(db_path: str = "data/processed/armani_trading.db"):
     cv_df = pd.concat(all_cv_results, ignore_index=True)
     forecast_df = pd.concat(all_forecasts, ignore_index=True)
 
-    Path("data/processed").mkdir(parents=True, exist_ok=True)
-    cv_df.to_csv("data/processed/cv_metrics.csv", index=False)
-    forecast_df.to_csv("data/processed/future_forecast.csv", index=False)
+    out_dir = resolve("data/processed")
+    Path(out_dir).mkdir(parents=True, exist_ok=True)
+    cv_df.to_csv(f"{out_dir}/cv_metrics.csv", index=False)
+    forecast_df.to_csv(f"{out_dir}/future_forecast.csv", index=False)
 
     return cv_df, forecast_df
 

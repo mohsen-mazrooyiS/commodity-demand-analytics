@@ -56,6 +56,11 @@ import numpy as np
 import pandas as pd
 from sqlalchemy import create_engine, text
 
+try:
+    from src.paths import resolve
+except ImportError:
+    from paths import resolve
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)s | %(message)s")
 logger = logging.getLogger(__name__)
 
@@ -104,7 +109,8 @@ class CleaningReport:
         return "\n".join(lines)
 
 
-def get_engine(db_path: str = "data/processed/armani_trading.db"):
+def get_engine(db_path: str = None):
+    db_path = db_path or resolve("data/processed/armani_trading.db")
     Path(db_path).parent.mkdir(parents=True, exist_ok=True)
     return create_engine(f"sqlite:///{db_path}")
 
@@ -205,7 +211,8 @@ def clean(df: pd.DataFrame) -> tuple[pd.DataFrame, CleaningReport]:
     return df, report
 
 
-def load_to_db(df: pd.DataFrame, engine, schema_path: str = "sql/schema.sql") -> None:
+def load_to_db(df: pd.DataFrame, engine, schema_path: str = None) -> None:
+    schema_path = schema_path or resolve("sql/schema.sql")
     with engine.begin() as conn:
         schema_sql = Path(schema_path).read_text()
         # strip full-line and trailing "--" comments before splitting on ";"
@@ -261,11 +268,11 @@ def load_to_db(df: pd.DataFrame, engine, schema_path: str = "sql/schema.sql") ->
     logger.info(f"Loaded {len(fact_sales):,} rows into fact_sales")
 
 
-def run_pipeline(raw_path: str, db_path: str = "data/processed/armani_trading.db") -> CleaningReport:
+def run_pipeline(raw_path: str, db_path: str = None) -> CleaningReport:
     df_raw = load_raw(raw_path)
     df_clean, report = clean(df_raw)
 
-    processed_path = "data/processed/cleaned_sales_data.parquet"
+    processed_path = resolve("data/processed/cleaned_sales_data.parquet")
     Path(processed_path).parent.mkdir(parents=True, exist_ok=True)
     df_clean.to_parquet(processed_path, index=False)
     logger.info(f"Saved cleaned data to {processed_path}")
@@ -278,4 +285,4 @@ def run_pipeline(raw_path: str, db_path: str = "data/processed/armani_trading.db
 
 
 if __name__ == "__main__":
-    run_pipeline(raw_path="data/raw/Sample_Data.xlsx")
+    run_pipeline(raw_path=resolve("data/raw/Sample_Data.xlsx"))
