@@ -155,11 +155,14 @@ forecasting weeks 183–208):
 - Forecast for week 184 = actual demand in week 132 = 1,426 units. Actual
   was 1,207, so the error is 219 units.
 
-**Why it's the right benchmark.** Demand here is strongly seasonal (for
-Rice - Basmati, autocorrelation at lag 52 is 0.69 and at lag 26 is −0.68,
-the signature of an annual cycle). When seasonality is that strong,
-"repeat last year" is hard to beat, so any model that can't beat it isn't
-adding value. It costs nothing to run and can't overfit.
+**Why it's the standard benchmark.** Demand here is strongly seasonal
+(for Rice - Basmati, autocorrelation at lag 52 is 0.69 and at lag 26 is
+−0.68, the signature of an annual cycle), so "repeat last year" is the
+usual first thing to beat. It costs nothing to run and can't overfit.
+**It is not a hard benchmark, though:** it uses a single year, so a
+one-line improvement, averaging the same week across *all* earlier years,
+scores 12.01% MAPE against its 14.30% (see the ablation below). Beating
+this baseline is a lower bar than it may sound.
 
 **Its weakness.** It copies last year's random noise along with last
 year's signal. If week 131 happened to be an unusually high week for
@@ -385,7 +388,10 @@ The headline table uses the three production folds described above.
 LightGBM beats the baseline on **26 of 30 products** (by average MAPE) and
 lowers average MAPE by about 12%. Baseline still wins on Cocoa Powder,
 Milk Powder - Whole, Spices - Turmeric and Sugar - White Refined. Per-fold,
-per-product numbers are in `data/processed/cv_metrics.csv`. The 9-fold
+per-product numbers are in `data/processed/cv_metrics.csv`. Note the
+baseline here is a *single-year* copy; a multi-year seasonal average (no ML)
+already reaches 12.01%, so "beats the baseline" overstates what the ML adds
+(see the ablation below). The 9-fold
 robustness check above puts the improvement closer to 15% and shows it
 also holds for the seasonal phase being forecast.
 
@@ -401,33 +407,85 @@ lagged price/cost/inventory, and 0.2% to the stockout flag. Gain
 importance is split unevenly across correlated features (the five
 calendar features encode the same information), so it is only a hint. To
 test it properly, `src/ablation.py` re-runs the identical recursive CV
-with feature groups removed:
+with feature groups removed. First, what each variant is:
+
+**What each row means.** Every LightGBM row below uses the same recursive
+CV, the same folds, and the same settings; only the *input features*
+differ:
+
+| Variant | Inputs the model is given |
+|---|---|
+| **Calendar only** (5 features) | Only *where the week falls in the yearly cycle*: `week_of_year`, `month`, `quarter`, `sin_woy`, `cos_woy`. **It never sees any past demand, price, cost or inventory.** |
+| Full minus `lag_52` (25) | Everything in the full model except demand 52 weeks ago |
+| **Full** (26), what ships | Calendar + lags + rolling stats + lagged price/cost/inventory + stockout flag |
+| Everything except calendar (21) | Lags, rolling stats, lagged price/cost/inventory, stockout flag; no calendar features |
+
+Two no-ML reference forecasts are scored on the same folds:
+*Baseline* (demand 52 weeks ago, one year) and *Seasonal average* (the
+average of the same week in **every** earlier year: 52, 104, 156 weeks ago
+and so on).
+
+**Understanding "calendar only".** A calendar-only model answers a single
+question: *"what is demand typically like at this time of year?"* Its only
+knowledge of a week is its position in the 52-week cycle, so it learns a
+seasonal profile from every training year at once. As a check, its
+forecast has a 0.978 correlation with the plain multi-year same-week
+average (checked on one product and fold: Rice - Basmati, fold 2). Consequences:
+
+- **It can't react to anything recent.** No trend, no recent spike or
+  slump, no price or inventory effects. Each product gets the same
+  seasonal shape every year. That's a real limitation for products whose
+  level is drifting.
+- **It needs no history of its own predictions,** so the recursive
+  forecast can't compound errors, and it trains on *every* week (52
+  more rows than the full model, which loses its first year for lack of
+  `lag_52`; in fold 1 that is 130 rows against 78).
+- **"Calendar" doesn't mean real holidays or real months here.** The
+  source file has no dates; Stage 1 assumed Week 1 = 2021-01-06. So these
+  features really encode *position in the 52-week cycle*. The model can't
+  know that a given week is, say, a religious holiday or harvest season.
 
 | Feature set | Features | Mean MAPE | Products beating baseline |
 |---|---|---|---|
 | Calendar only | 5 | **11.38%** | **30 / 30** |
 | Full minus `lag_52` | 25 | 11.99% | 28 / 30 |
+| *Seasonal average (no ML)* | none | *12.01%* | *30 / 30* |
 | **Full (what ships)** | 26 | 12.61% | 26 / 30 |
 | *Baseline (seasonal-naive)* | none | *14.30%* | — |
 | Everything except calendar | 21 | 18.02% | 10 / 30 |
 
-Paired at the finest grain (90 product-fold pairs): calendar-only beats the
-baseline in 97% of pairs and beats the full model in 64%. The full model
-beats the baseline in 79% of pairs. Dropping `lag_52` beats the full model
-in only 54% of pairs, which is indistinguishable from a coin flip, so we
-make no claim that `lag_52` hurts.
+Paired at the finest grain (90 product-fold pairs):
+
+| Comparison | Left side wins |
+|---|---|
+| Calendar only vs baseline | 97% |
+| Seasonal average vs baseline | 96% |
+| Full vs baseline | 79% |
+| Calendar only vs full | 64% |
+| Calendar only vs seasonal average | 88% |
+| Seasonal average vs full | 48% |
+| Full minus `lag_52` vs full | 54% |
+
+The last two rows are coin flips: the shipped model is statistically
+indistinguishable from a plain multi-year average, and dropping `lag_52`
+makes no reliable difference, so we make no claim that `lag_52` hurts.
 
 **What this means:**
 
 1. The advantage comes from learning each product's *annual seasonal
-   shape* from the calendar features, pooled across every year in the
-   training window. That averages out the one-off noise the baseline
-   copies from a single year.
-2. Lag, rolling, price and inventory features alone are *worse* than the
+   shape* pooled across every training year. That averages out the
+   one-off noise the single-year baseline copies.
+2. **Most of the gain does not need machine learning.** A plain average of
+   earlier years captures most of it (12.01% vs 14.30%). The shipped
+   26-feature model does no better than that average (48% of pairs).
+3. **ML adds a smaller but consistent extra on top:** calendar-only
+   LightGBM beats the plain average in 88% of pairs (11.38% vs 12.01%),
+   plausibly by smoothing across neighbouring weeks (untested).
+4. Lag, rolling, price and inventory features alone are *worse* than the
    baseline. With only 78–208 usable rows per model, the extra features
    most likely add noise more than signal (an overfitting hypothesis we
    have not directly tested).
-3. **The shipped 26-feature model is not the best variant we tested.** The
+5. **The shipped 26-feature model is not the best variant we tested.** The
    5-feature calendar-only model scored better on average (11.38% vs
    12.61%) and beat the baseline on all 30 products. We did *not* switch,
    because doing so changes the forecasts and therefore every downstream
@@ -435,9 +493,10 @@ make no claim that `lag_52` hurts.
    is the recommended next iteration. Caveats: 3 folds is limited
    evidence, the 64% pairwise edge is real but modest, and all variants
    share one un-tuned set of hyperparameters. The 9-fold check in "How the
-   folds are built" reproduces the ranking (calendar-only 11.32% vs full
-   11.94%, better in 60% of product-folds), which is corroboration, not
-   independent proof, because those folds overlap.
+   folds are built" reproduces the ranking of calendar-only over full
+   (11.32% vs 11.94%, better in 60% of product-folds), which is
+   corroboration, not independent proof, because those folds overlap. (The
+   seasonal average was only scored on the 3 production folds.)
 
 ### Model iteration: what we tried first
 
