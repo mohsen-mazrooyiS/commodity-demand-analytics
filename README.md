@@ -346,7 +346,7 @@ What this shows:
 1. **The conclusions hold in the phase we forecast.** For folds starting at
    cycle week 1, the full model has 11.74% MAPE against the baseline's
    13.70% (14% lower), and beats the baseline in 87% of the 60
-   product-folds. Calendar-only beats the baseline in 92%.
+   product-folds. Calendar-only (the model with only calendar features) beats the baseline in 92%.
 2. **The original three folds were, if anything, the hardest phase for the
    shipped model** (12.61%, against 11.5–11.7% in the other phases), so
    the headline "about 12% better than baseline" was slightly
@@ -466,7 +466,7 @@ Paired at the finest grain (90 product-fold pairs):
 | Seasonal average vs full | 48% |
 | Full minus `lag_52` vs full | 54% |
 
-The last two rows are coin flips: the shipped model is statistically
+The last two rows are coin flips: the shipped 26-features model is statistically
 indistinguishable from a plain multi-year average, and dropping `lag_52`
 makes no reliable difference, so we make no claim that `lag_52` hurts.
 
