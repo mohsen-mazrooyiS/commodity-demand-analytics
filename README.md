@@ -9,7 +9,7 @@ reporting, and a dynamic pricing framework.
 - [x] **Stage 1 — Data Engineering, ETL & Database**
 - [x] **Stage 2 — Time-series demand forecasting & factor analysis**
 - [x] **Stage 3 — Financial & operational KPI dashboard**
-- [x] **Stage 4 — Dynamic pricing & risk strategy** (this commit)
+- [x] **Stage 4 — Dynamic pricing & risk strategy**
 
 ## Architecture
 
