@@ -1,0 +1,811 @@
+product,origin,phase_start_week,variant,MAPE_%
+Barley,130,27,baseline,15.748918216777238
+Barley,130,27,full,12.145907991981366
+Barley,130,27,calendar_only,11.924048405703818
+Barley,143,40,baseline,14.064645296135195
+Barley,143,40,full,12.300008271483403
+Barley,143,40,calendar_only,12.83318110749369
+Barley,156,1,baseline,14.180519294262444
+Barley,156,1,full,16.553230796860785
+Barley,156,1,calendar_only,13.442839854586072
+Barley,169,14,baseline,14.051915169195766
+Barley,169,14,full,15.168288283474284
+Barley,169,14,calendar_only,12.526955201727255
+Barley,182,27,baseline,13.105335103900897
+Barley,182,27,full,9.625719231801318
+Barley,182,27,calendar_only,11.303083559719193
+Barley,195,40,baseline,12.574468175373028
+Barley,195,40,full,13.484723186625788
+Barley,195,40,calendar_only,12.599943066367414
+Barley,208,1,baseline,12.532371539700254
+Barley,208,1,full,15.898305076019497
+Barley,208,1,calendar_only,12.44519656733633
+Barley,221,14,baseline,13.943451309129836
+Barley,221,14,full,12.022474357332161
+Barley,221,14,calendar_only,11.117887249327394
+Barley,234,27,baseline,15.678041219580821
+Barley,234,27,full,16.60845845140237
+Barley,234,27,calendar_only,13.939605189536234
+Canned Tomatoes,130,27,baseline,15.361432715904586
+Canned Tomatoes,130,27,full,12.768162492208829
+Canned Tomatoes,130,27,calendar_only,12.467789324506837
+Canned Tomatoes,143,40,baseline,15.760623524755394
+Canned Tomatoes,143,40,full,12.78618506541252
+Canned Tomatoes,143,40,calendar_only,13.308106022018013
+Canned Tomatoes,156,1,baseline,12.2402368266228
+Canned Tomatoes,156,1,full,10.377168496949661
+Canned Tomatoes,156,1,calendar_only,11.947222819276938
+Canned Tomatoes,169,14,baseline,13.954061971293893
+Canned Tomatoes,169,14,full,9.915770915404613
+Canned Tomatoes,169,14,calendar_only,10.96065335119216
+Canned Tomatoes,182,27,baseline,11.227342977179823
+Canned Tomatoes,182,27,full,11.787017820796072
+Canned Tomatoes,182,27,calendar_only,12.600034925847206
+Canned Tomatoes,195,40,baseline,12.180915159411533
+Canned Tomatoes,195,40,full,12.849787616253167
+Canned Tomatoes,195,40,calendar_only,12.901794134503957
+Canned Tomatoes,208,1,baseline,13.638781242145226
+Canned Tomatoes,208,1,full,11.714804301501067
+Canned Tomatoes,208,1,calendar_only,11.721798337927611
+Canned Tomatoes,221,14,baseline,11.111639631217994
+Canned Tomatoes,221,14,full,10.760240245271898
+Canned Tomatoes,221,14,calendar_only,10.696443792136138
+Canned Tomatoes,234,27,baseline,15.06746192201993
+Canned Tomatoes,234,27,full,11.17112219735574
+Canned Tomatoes,234,27,calendar_only,10.456561313465745
+Canned Tuna,130,27,baseline,15.43371282121188
+Canned Tuna,130,27,full,12.215408662498922
+Canned Tuna,130,27,calendar_only,11.690935830232574
+Canned Tuna,143,40,baseline,15.586142091773485
+Canned Tuna,143,40,full,11.716946794377922
+Canned Tuna,143,40,calendar_only,12.330875065563001
+Canned Tuna,156,1,baseline,12.794082844756518
+Canned Tuna,156,1,full,12.080120664585294
+Canned Tuna,156,1,calendar_only,10.199042997240673
+Canned Tuna,169,14,baseline,11.59944734296455
+Canned Tuna,169,14,full,10.355702943404259
+Canned Tuna,169,14,calendar_only,11.619829976545711
+Canned Tuna,182,27,baseline,13.236753473468685
+Canned Tuna,182,27,full,8.898795143407735
+Canned Tuna,182,27,calendar_only,10.85625054234431
+Canned Tuna,195,40,baseline,14.656807150388618
+Canned Tuna,195,40,full,10.681974576371937
+Canned Tuna,195,40,calendar_only,9.780281768782444
+Canned Tuna,208,1,baseline,11.516427437658267
+Canned Tuna,208,1,full,11.309847998197158
+Canned Tuna,208,1,calendar_only,9.58734133875435
+Canned Tuna,221,14,baseline,10.700224205940033
+Canned Tuna,221,14,full,9.642681903595449
+Canned Tuna,221,14,calendar_only,9.669928980855248
+Canned Tuna,234,27,baseline,13.923741783518057
+Canned Tuna,234,27,full,12.583031498996997
+Canned Tuna,234,27,calendar_only,10.956131748061072
+Chickpeas,130,27,baseline,13.996566115488301
+Chickpeas,130,27,full,10.93527461381186
+Chickpeas,130,27,calendar_only,10.973577899045534
+Chickpeas,143,40,baseline,11.26093036189449
+Chickpeas,143,40,full,10.19733626201796
+Chickpeas,143,40,calendar_only,9.98934157392215
+Chickpeas,156,1,baseline,9.427288485380792
+Chickpeas,156,1,full,8.572350506825353
+Chickpeas,156,1,calendar_only,8.6144191433933
+Chickpeas,169,14,baseline,15.137510738843114
+Chickpeas,169,14,full,14.622094735849183
+Chickpeas,169,14,calendar_only,12.594707802119837
+Chickpeas,182,27,baseline,16.791566333793273
+Chickpeas,182,27,full,18.715428842980902
+Chickpeas,182,27,calendar_only,13.070095681752653
+Chickpeas,195,40,baseline,14.524512114196888
+Chickpeas,195,40,full,14.761832536428503
+Chickpeas,195,40,calendar_only,11.628618971588192
+Chickpeas,208,1,baseline,13.561456810500824
+Chickpeas,208,1,full,13.318284477225662
+Chickpeas,208,1,calendar_only,12.802430532523834
+Chickpeas,221,14,baseline,15.70806155701677
+Chickpeas,221,14,full,12.746763972247077
+Chickpeas,221,14,calendar_only,13.183237351605511
+Chickpeas,234,27,baseline,17.40845187963913
+Chickpeas,234,27,full,12.604554067100066
+Chickpeas,234,27,calendar_only,13.734089537014786
+Cocoa Powder,130,27,baseline,13.393157504212525
+Cocoa Powder,130,27,full,16.451645855098047
+Cocoa Powder,130,27,calendar_only,10.98415374608939
+Cocoa Powder,143,40,baseline,11.987812810497543
+Cocoa Powder,143,40,full,10.48905842207264
+Cocoa Powder,143,40,calendar_only,9.081710179775335
+Cocoa Powder,156,1,baseline,16.05858484042968
+Cocoa Powder,156,1,full,11.934105755388327
+Cocoa Powder,156,1,calendar_only,9.955823258714744
+Cocoa Powder,169,14,baseline,16.298533031393394
+Cocoa Powder,169,14,full,12.118421662778836
+Cocoa Powder,169,14,calendar_only,11.305380516675477
+Cocoa Powder,182,27,baseline,13.396120987782131
+Cocoa Powder,182,27,full,13.123868948957822
+Cocoa Powder,182,27,calendar_only,11.479977588278798
+Cocoa Powder,195,40,baseline,11.248371988633593
+Cocoa Powder,195,40,full,11.892131950636601
+Cocoa Powder,195,40,calendar_only,11.371944124755284
+Cocoa Powder,208,1,baseline,11.746910372165932
+Cocoa Powder,208,1,full,11.01973326196451
+Cocoa Powder,208,1,calendar_only,11.29410487379998
+Cocoa Powder,221,14,baseline,14.535452305034607
+Cocoa Powder,221,14,full,10.693080663411523
+Cocoa Powder,221,14,calendar_only,9.906394753743626
+Cocoa Powder,234,27,baseline,13.82421034920048
+Cocoa Powder,234,27,full,11.27772544168277
+Cocoa Powder,234,27,calendar_only,10.014900235224742
+Coffee - Arabica,130,27,baseline,9.77927042432606
+Coffee - Arabica,130,27,full,10.039783697486536
+Coffee - Arabica,130,27,calendar_only,8.314810127670718
+Coffee - Arabica,143,40,baseline,16.232946336079834
+Coffee - Arabica,143,40,full,12.541993923053646
+Coffee - Arabica,143,40,calendar_only,12.57912725659645
+Coffee - Arabica,156,1,baseline,16.923099047737
+Coffee - Arabica,156,1,full,13.273228504065433
+Coffee - Arabica,156,1,calendar_only,13.638774286452318
+Coffee - Arabica,169,14,baseline,11.303912290044629
+Coffee - Arabica,169,14,full,6.274188173427107
+Coffee - Arabica,169,14,calendar_only,9.328432792823605
+Coffee - Arabica,182,27,baseline,9.827858789114968
+Coffee - Arabica,182,27,full,7.49987006341387
+Coffee - Arabica,182,27,calendar_only,8.485100941122095
+Coffee - Arabica,195,40,baseline,13.097172716410938
+Coffee - Arabica,195,40,full,8.793853473231755
+Coffee - Arabica,195,40,calendar_only,8.990963038288896
+Coffee - Arabica,208,1,baseline,16.087985673722077
+Coffee - Arabica,208,1,full,13.809025055814056
+Coffee - Arabica,208,1,calendar_only,10.955045321151832
+Coffee - Arabica,221,14,baseline,12.657607367075336
+Coffee - Arabica,221,14,full,12.828535325855245
+Coffee - Arabica,221,14,calendar_only,10.536272584723706
+Coffee - Arabica,234,27,baseline,12.33444995127254
+Coffee - Arabica,234,27,full,12.922404069043386
+Coffee - Arabica,234,27,calendar_only,11.046317850751516
+Coffee - Robusta,130,27,baseline,14.980173485135637
+Coffee - Robusta,130,27,full,12.439379167272199
+Coffee - Robusta,130,27,calendar_only,11.612681526223284
+Coffee - Robusta,143,40,baseline,14.39773590810389
+Coffee - Robusta,143,40,full,13.130753737029607
+Coffee - Robusta,143,40,calendar_only,13.091959393835634
+Coffee - Robusta,156,1,baseline,14.176305280497495
+Coffee - Robusta,156,1,full,10.894976795896673
+Coffee - Robusta,156,1,calendar_only,11.102146749040251
+Coffee - Robusta,169,14,baseline,15.223071436282169
+Coffee - Robusta,169,14,full,12.526589981673508
+Coffee - Robusta,169,14,calendar_only,12.76594770863417
+Coffee - Robusta,182,27,baseline,17.63899588677374
+Coffee - Robusta,182,27,full,13.458848338880044
+Coffee - Robusta,182,27,calendar_only,15.161406776671955
+Coffee - Robusta,195,40,baseline,17.90956956569382
+Coffee - Robusta,195,40,full,11.714829008356078
+Coffee - Robusta,195,40,calendar_only,14.606461949775326
+Coffee - Robusta,208,1,baseline,14.407644465983338
+Coffee - Robusta,208,1,full,12.40753515259386
+Coffee - Robusta,208,1,calendar_only,14.65524497376901
+Coffee - Robusta,221,14,baseline,14.435742252520248
+Coffee - Robusta,221,14,full,13.06334491926944
+Coffee - Robusta,221,14,calendar_only,13.917644548979876
+Coffee - Robusta,234,27,baseline,15.21004901249579
+Coffee - Robusta,234,27,full,13.397417205558243
+Coffee - Robusta,234,27,calendar_only,10.908829345811087
+Corn,130,27,baseline,14.097945173853363
+Corn,130,27,full,9.915265359381253
+Corn,130,27,calendar_only,11.519647803669478
+Corn,143,40,baseline,12.856425265912009
+Corn,143,40,full,12.60761268942595
+Corn,143,40,calendar_only,12.83994214090981
+Corn,156,1,baseline,13.0660702003671
+Corn,156,1,full,10.417738989072154
+Corn,156,1,calendar_only,13.002192808568191
+Corn,169,14,baseline,12.532670506617583
+Corn,169,14,full,9.663344730856682
+Corn,169,14,calendar_only,10.897377101099861
+Corn,182,27,baseline,15.792076495218287
+Corn,182,27,full,12.687706917855015
+Corn,182,27,calendar_only,13.50651548636072
+Corn,195,40,baseline,14.320282276711755
+Corn,195,40,full,12.936141134341927
+Corn,195,40,calendar_only,14.530808519056707
+Corn,208,1,baseline,11.753074895345682
+Corn,208,1,full,11.233654002557774
+Corn,208,1,calendar_only,11.488362656723346
+Corn,221,14,baseline,13.347432297155692
+Corn,221,14,full,12.07463627418329
+Corn,221,14,calendar_only,12.594388320722219
+Corn,234,27,baseline,16.258548354341887
+Corn,234,27,full,11.799421930836953
+Corn,234,27,calendar_only,12.288578844258225
+Flour - All Purpose,130,27,baseline,13.858451382494852
+Flour - All Purpose,130,27,full,8.357766875499507
+Flour - All Purpose,130,27,calendar_only,11.253799387302053
+Flour - All Purpose,143,40,baseline,11.990044047393642
+Flour - All Purpose,143,40,full,9.193216586218657
+Flour - All Purpose,143,40,calendar_only,11.012630933249373
+Flour - All Purpose,156,1,baseline,15.181583956421676
+Flour - All Purpose,156,1,full,10.861391403007104
+Flour - All Purpose,156,1,calendar_only,13.494787614341138
+Flour - All Purpose,169,14,baseline,15.556230119135986
+Flour - All Purpose,169,14,full,13.465284892756909
+Flour - All Purpose,169,14,calendar_only,13.081416519064371
+Flour - All Purpose,182,27,baseline,12.519759146405365
+Flour - All Purpose,182,27,full,8.943276277701544
+Flour - All Purpose,182,27,calendar_only,9.23732614135904
+Flour - All Purpose,195,40,baseline,11.441562791713054
+Flour - All Purpose,195,40,full,14.775231683786197
+Flour - All Purpose,195,40,calendar_only,9.453209873344724
+Flour - All Purpose,208,1,baseline,16.076728605254395
+Flour - All Purpose,208,1,full,12.163350673195211
+Flour - All Purpose,208,1,calendar_only,11.719073527882484
+Flour - All Purpose,221,14,baseline,14.450428127341503
+Flour - All Purpose,221,14,full,10.680591746294404
+Flour - All Purpose,221,14,calendar_only,9.593994749774122
+Flour - All Purpose,234,27,baseline,10.760573807141178
+Flour - All Purpose,234,27,full,10.091743078744136
+Flour - All Purpose,234,27,calendar_only,10.028948428392225
+Lentils - Green,130,27,baseline,11.467912605727854
+Lentils - Green,130,27,full,10.07709467419539
+Lentils - Green,130,27,calendar_only,9.52670472368322
+Lentils - Green,143,40,baseline,10.472602967509584
+Lentils - Green,143,40,full,9.609657443454024
+Lentils - Green,143,40,calendar_only,8.076434996109455
+Lentils - Green,156,1,baseline,11.435588970296804
+Lentils - Green,156,1,full,10.283851538769886
+Lentils - Green,156,1,calendar_only,8.289243389005128
+Lentils - Green,169,14,baseline,12.142500043164247
+Lentils - Green,169,14,full,12.512103356023745
+Lentils - Green,169,14,calendar_only,10.11836545026981
+Lentils - Green,182,27,baseline,12.004797997266278
+Lentils - Green,182,27,full,11.60558754003346
+Lentils - Green,182,27,calendar_only,10.443310469187976
+Lentils - Green,195,40,baseline,12.639178703901482
+Lentils - Green,195,40,full,11.693281837654181
+Lentils - Green,195,40,calendar_only,10.970801566520505
+Lentils - Green,208,1,baseline,10.320618124752071
+Lentils - Green,208,1,full,10.791259172030129
+Lentils - Green,208,1,calendar_only,9.965054765237674
+Lentils - Green,221,14,baseline,11.772724541323894
+Lentils - Green,221,14,full,12.687921129211988
+Lentils - Green,221,14,calendar_only,10.877839205734228
+Lentils - Green,234,27,baseline,14.405657710580536
+Lentils - Green,234,27,full,13.703958249265465
+Lentils - Green,234,27,calendar_only,13.11904147065514
+Lentils - Red,130,27,baseline,20.346806583997704
+Lentils - Red,130,27,full,14.48548819264222
+Lentils - Red,130,27,calendar_only,12.9854914716898
+Lentils - Red,143,40,baseline,16.29219351354039
+Lentils - Red,143,40,full,11.148524036034841
+Lentils - Red,143,40,calendar_only,11.312817584934859
+Lentils - Red,156,1,baseline,18.041630986440925
+Lentils - Red,156,1,full,9.712477905956744
+Lentils - Red,156,1,calendar_only,9.563395291898052
+Lentils - Red,169,14,baseline,17.121033895424723
+Lentils - Red,169,14,full,10.909785045716083
+Lentils - Red,169,14,calendar_only,9.96046462760219
+Lentils - Red,182,27,baseline,15.206533658011667
+Lentils - Red,182,27,full,13.187712743668675
+Lentils - Red,182,27,calendar_only,12.118259283337009
+Lentils - Red,195,40,baseline,15.125010054666852
+Lentils - Red,195,40,full,12.182838703194966
+Lentils - Red,195,40,calendar_only,11.969322492618543
+Lentils - Red,208,1,baseline,14.683344896220682
+Lentils - Red,208,1,full,15.313846908472694
+Lentils - Red,208,1,calendar_only,12.234127514626318
+Lentils - Red,221,14,baseline,12.135098539694841
+Lentils - Red,221,14,full,9.928811936027028
+Lentils - Red,221,14,calendar_only,9.607587305105971
+Lentils - Red,234,27,baseline,12.958158115612573
+Lentils - Red,234,27,full,10.300519492531828
+Lentils - Red,234,27,calendar_only,7.603087773856973
+Milk Powder - Skimmed,130,27,baseline,15.838839955837333
+Milk Powder - Skimmed,130,27,full,14.353679024654367
+Milk Powder - Skimmed,130,27,calendar_only,13.43991859375196
+Milk Powder - Skimmed,143,40,baseline,12.254921262637444
+Milk Powder - Skimmed,143,40,full,11.798381004284659
+Milk Powder - Skimmed,143,40,calendar_only,10.09734923360722
+Milk Powder - Skimmed,156,1,baseline,13.373325190378768
+Milk Powder - Skimmed,156,1,full,10.622052083144512
+Milk Powder - Skimmed,156,1,calendar_only,10.050029788308114
+Milk Powder - Skimmed,169,14,baseline,14.804834559638962
+Milk Powder - Skimmed,169,14,full,9.89289267714668
+Milk Powder - Skimmed,169,14,calendar_only,13.076818265395346
+Milk Powder - Skimmed,182,27,baseline,16.646281283687298
+Milk Powder - Skimmed,182,27,full,13.337934479858038
+Milk Powder - Skimmed,182,27,calendar_only,13.367799667779634
+Milk Powder - Skimmed,195,40,baseline,16.069416417710393
+Milk Powder - Skimmed,195,40,full,14.944176925834313
+Milk Powder - Skimmed,195,40,calendar_only,11.980413391883953
+Milk Powder - Skimmed,208,1,baseline,11.544336935329673
+Milk Powder - Skimmed,208,1,full,11.171702420154674
+Milk Powder - Skimmed,208,1,calendar_only,12.44132810425019
+Milk Powder - Skimmed,221,14,baseline,13.1657225095201
+Milk Powder - Skimmed,221,14,full,12.525142031754882
+Milk Powder - Skimmed,221,14,calendar_only,13.671284392989072
+Milk Powder - Skimmed,234,27,baseline,13.7888513347781
+Milk Powder - Skimmed,234,27,full,12.212367192877881
+Milk Powder - Skimmed,234,27,calendar_only,9.039538112768074
+Milk Powder - Whole,130,27,baseline,16.733888320153945
+Milk Powder - Whole,130,27,full,32.486692543450665
+Milk Powder - Whole,130,27,calendar_only,11.986105980488794
+Milk Powder - Whole,143,40,baseline,14.196735379282035
+Milk Powder - Whole,143,40,full,10.433924069615253
+Milk Powder - Whole,143,40,calendar_only,10.90219172983123
+Milk Powder - Whole,156,1,baseline,16.044700468935577
+Milk Powder - Whole,156,1,full,12.672051738813387
+Milk Powder - Whole,156,1,calendar_only,12.669985105878013
+Milk Powder - Whole,169,14,baseline,16.17572852539726
+Milk Powder - Whole,169,14,full,12.162751148063007
+Milk Powder - Whole,169,14,calendar_only,11.428653827734227
+Milk Powder - Whole,182,27,baseline,12.182546468765056
+Milk Powder - Whole,182,27,full,11.061062743277686
+Milk Powder - Whole,182,27,calendar_only,9.283670332329356
+Milk Powder - Whole,195,40,baseline,10.031806952589854
+Milk Powder - Whole,195,40,full,11.12291411414428
+Milk Powder - Whole,195,40,calendar_only,9.6145454775089
+Milk Powder - Whole,208,1,baseline,14.674882423330715
+Milk Powder - Whole,208,1,full,11.492203143371462
+Milk Powder - Whole,208,1,calendar_only,10.372878863593403
+Milk Powder - Whole,221,14,baseline,15.193550851881433
+Milk Powder - Whole,221,14,full,11.623150246439964
+Milk Powder - Whole,221,14,calendar_only,9.620606364227937
+Milk Powder - Whole,234,27,baseline,14.505840498901456
+Milk Powder - Whole,234,27,full,15.723335034148429
+Milk Powder - Whole,234,27,calendar_only,12.40753363062228
+Oats,130,27,baseline,14.97161130500386
+Oats,130,27,full,11.331992721017164
+Oats,130,27,calendar_only,11.074262324304003
+Oats,143,40,baseline,13.37987461267719
+Oats,143,40,full,11.420046522889074
+Oats,143,40,calendar_only,9.875621770195758
+Oats,156,1,baseline,11.24579548728955
+Oats,156,1,full,8.767597226824881
+Oats,156,1,calendar_only,9.848037373882049
+Oats,169,14,baseline,15.01274537422415
+Oats,169,14,full,13.713441801351928
+Oats,169,14,calendar_only,14.388837472636837
+Oats,182,27,baseline,17.268512083500333
+Oats,182,27,full,14.783908522559166
+Oats,182,27,calendar_only,14.29306007930059
+Oats,195,40,baseline,12.81454651600532
+Oats,195,40,full,9.584428750452393
+Oats,195,40,calendar_only,11.029241437599005
+Oats,208,1,baseline,11.188335363301064
+Oats,208,1,full,12.212514575847555
+Oats,208,1,calendar_only,12.110166032499075
+Oats,221,14,baseline,14.31710275545101
+Oats,221,14,full,8.938759903852207
+Oats,221,14,calendar_only,12.856692780426807
+Oats,234,27,baseline,13.755240718036028
+Oats,234,27,full,9.69489539871964
+Oats,234,27,calendar_only,11.306395480139436
+Palm Oil,130,27,baseline,12.73809161762625
+Palm Oil,130,27,full,15.396053553331473
+Palm Oil,130,27,calendar_only,10.14529711433235
+Palm Oil,143,40,baseline,12.935623024467983
+Palm Oil,143,40,full,12.21105387894425
+Palm Oil,143,40,calendar_only,9.518072273178003
+Palm Oil,156,1,baseline,14.391987513223276
+Palm Oil,156,1,full,14.546270393271035
+Palm Oil,156,1,calendar_only,11.157790900394874
+Palm Oil,169,14,baseline,14.789500456564312
+Palm Oil,169,14,full,13.16501717238647
+Palm Oil,169,14,calendar_only,13.669443020385327
+Palm Oil,182,27,baseline,15.764696165976078
+Palm Oil,182,27,full,14.995156930685798
+Palm Oil,182,27,calendar_only,14.273373591997657
+Palm Oil,195,40,baseline,12.675672848255287
+Palm Oil,195,40,full,11.047511518075897
+Palm Oil,195,40,calendar_only,11.337990130220804
+Palm Oil,208,1,baseline,10.54470114042511
+Palm Oil,208,1,full,7.588772984095798
+Palm Oil,208,1,calendar_only,7.986535866436717
+Palm Oil,221,14,baseline,16.192811467951355
+Palm Oil,221,14,full,10.818798148495022
+Palm Oil,221,14,calendar_only,10.049370521492767
+Palm Oil,234,27,baseline,14.481144488469072
+Palm Oil,234,27,full,11.037904929419748
+Palm Oil,234,27,calendar_only,10.75671217279322
+Pasta - Spaghetti,130,27,baseline,16.283932277960346
+Pasta - Spaghetti,130,27,full,15.74525704547082
+Pasta - Spaghetti,130,27,calendar_only,12.48605622521824
+Pasta - Spaghetti,143,40,baseline,17.27525393603835
+Pasta - Spaghetti,143,40,full,13.364851210885337
+Pasta - Spaghetti,143,40,calendar_only,11.17221439356282
+Pasta - Spaghetti,156,1,baseline,12.318674205195995
+Pasta - Spaghetti,156,1,full,9.317176582569719
+Pasta - Spaghetti,156,1,calendar_only,9.18430855218768
+Pasta - Spaghetti,169,14,baseline,15.054917270661436
+Pasta - Spaghetti,169,14,full,8.740202198431987
+Pasta - Spaghetti,169,14,calendar_only,9.503129390711354
+Pasta - Spaghetti,182,27,baseline,18.075322745733942
+Pasta - Spaghetti,182,27,full,10.496133366667365
+Pasta - Spaghetti,182,27,calendar_only,13.076663079418566
+Pasta - Spaghetti,195,40,baseline,13.972589549130513
+Pasta - Spaghetti,195,40,full,12.259863701286665
+Pasta - Spaghetti,195,40,calendar_only,13.874229601276417
+Pasta - Spaghetti,208,1,baseline,8.293265878958533
+Pasta - Spaghetti,208,1,full,7.860628142530289
+Pasta - Spaghetti,208,1,calendar_only,8.62272961179322
+Pasta - Spaghetti,221,14,baseline,9.47143261965895
+Pasta - Spaghetti,221,14,full,10.170385126090315
+Pasta - Spaghetti,221,14,calendar_only,7.224633772648223
+Pasta - Spaghetti,234,27,baseline,11.125923969470621
+Pasta - Spaghetti,234,27,full,12.165335068320735
+Pasta - Spaghetti,234,27,calendar_only,8.601226793784804
+Rice - Basmati,130,27,baseline,13.577393447814549
+Rice - Basmati,130,27,full,9.647709291587232
+Rice - Basmati,130,27,calendar_only,13.258808906841155
+Rice - Basmati,143,40,baseline,10.29390159498892
+Rice - Basmati,143,40,full,10.970676968366929
+Rice - Basmati,143,40,calendar_only,10.851607296393711
+Rice - Basmati,156,1,baseline,11.474902747916737
+Rice - Basmati,156,1,full,10.201870357834165
+Rice - Basmati,156,1,calendar_only,10.587093953961174
+Rice - Basmati,169,14,baseline,12.911775397310068
+Rice - Basmati,169,14,full,11.425090528357947
+Rice - Basmati,169,14,calendar_only,10.143221732338816
+Rice - Basmati,182,27,baseline,14.430838808207572
+Rice - Basmati,182,27,full,12.670924382998452
+Rice - Basmati,182,27,calendar_only,9.693397703252202
+Rice - Basmati,195,40,baseline,14.405010805393673
+Rice - Basmati,195,40,full,9.523347097491794
+Rice - Basmati,195,40,calendar_only,8.696397783756456
+Rice - Basmati,208,1,baseline,12.291792789211858
+Rice - Basmati,208,1,full,10.543185000325227
+Rice - Basmati,208,1,calendar_only,8.677185624501007
+Rice - Basmati,221,14,baseline,12.627868370003082
+Rice - Basmati,221,14,full,13.117921465152637
+Rice - Basmati,221,14,calendar_only,10.722108026149353
+Rice - Basmati,234,27,baseline,11.385231734715715
+Rice - Basmati,234,27,full,15.181613786451443
+Rice - Basmati,234,27,calendar_only,11.642353651304667
+Rice - White,130,27,baseline,17.59801946401064
+Rice - White,130,27,full,14.871211025923515
+Rice - White,130,27,calendar_only,13.072421128262151
+Rice - White,143,40,baseline,16.72966014097413
+Rice - White,143,40,full,11.774336778260416
+Rice - White,143,40,calendar_only,11.426802336905165
+Rice - White,156,1,baseline,15.479795551594158
+Rice - White,156,1,full,18.614324428915424
+Rice - White,156,1,calendar_only,12.75722326427848
+Rice - White,169,14,baseline,14.080043221645688
+Rice - White,169,14,full,14.663261400144794
+Rice - White,169,14,calendar_only,14.040379728855095
+Rice - White,182,27,baseline,13.646249189731114
+Rice - White,182,27,full,11.682053968727416
+Rice - White,182,27,calendar_only,12.95008659285996
+Rice - White,195,40,baseline,14.846291626034521
+Rice - White,195,40,full,8.402913963499357
+Rice - White,195,40,calendar_only,11.031478131918536
+Rice - White,208,1,baseline,14.574404059888943
+Rice - White,208,1,full,8.019000609996269
+Rice - White,208,1,calendar_only,10.264147416156751
+Rice - White,221,14,baseline,15.414972886981088
+Rice - White,221,14,full,10.124856397691705
+Rice - White,221,14,calendar_only,10.888656185394266
+Rice - White,234,27,baseline,15.95992814160243
+Rice - White,234,27,full,9.00605246668153
+Rice - White,234,27,calendar_only,9.618071542894313
+Salt - Iodized,130,27,baseline,14.183677569565805
+Salt - Iodized,130,27,full,12.54218220650563
+Salt - Iodized,130,27,calendar_only,12.113474266210586
+Salt - Iodized,143,40,baseline,13.231397920939902
+Salt - Iodized,143,40,full,9.2397917903744
+Salt - Iodized,143,40,calendar_only,10.860944953702946
+Salt - Iodized,156,1,baseline,17.18933390317517
+Salt - Iodized,156,1,full,11.191603158973711
+Salt - Iodized,156,1,calendar_only,12.169610874902395
+Salt - Iodized,169,14,baseline,18.20627814236117
+Salt - Iodized,169,14,full,11.694377356012474
+Salt - Iodized,169,14,calendar_only,11.416353307556216
+Salt - Iodized,182,27,baseline,16.869686996709106
+Salt - Iodized,182,27,full,10.867664418079416
+Salt - Iodized,182,27,calendar_only,11.833294455878935
+Salt - Iodized,195,40,baseline,13.684683376341363
+Salt - Iodized,195,40,full,10.767822458888313
+Salt - Iodized,195,40,calendar_only,12.47071212405685
+Salt - Iodized,208,1,baseline,12.35005902616588
+Salt - Iodized,208,1,full,11.824596539595793
+Salt - Iodized,208,1,calendar_only,9.28120476924897
+Salt - Iodized,221,14,baseline,13.33606157649495
+Salt - Iodized,221,14,full,11.131359319863405
+Salt - Iodized,221,14,calendar_only,9.278244124337455
+Salt - Iodized,234,27,baseline,14.57362311933126
+Salt - Iodized,234,27,full,10.27079506940259
+Salt - Iodized,234,27,calendar_only,10.763653043240051
+Soybean Oil,130,27,baseline,15.490086337006831
+Soybean Oil,130,27,full,14.56959907740332
+Soybean Oil,130,27,calendar_only,11.461783851731312
+Soybean Oil,143,40,baseline,14.143945533348164
+Soybean Oil,143,40,full,12.870605074399965
+Soybean Oil,143,40,calendar_only,12.51821719109018
+Soybean Oil,156,1,baseline,15.76975150170796
+Soybean Oil,156,1,full,14.713920393500853
+Soybean Oil,156,1,calendar_only,13.887463227427824
+Soybean Oil,169,14,baseline,14.775759724566923
+Soybean Oil,169,14,full,15.033445350720113
+Soybean Oil,169,14,calendar_only,12.99578822054113
+Soybean Oil,182,27,baseline,11.68019648209771
+Soybean Oil,182,27,full,9.6177159021768
+Soybean Oil,182,27,calendar_only,9.924608627348281
+Soybean Oil,195,40,baseline,13.651396744956187
+Soybean Oil,195,40,full,9.35939427387314
+Soybean Oil,195,40,calendar_only,9.595750816874213
+Soybean Oil,208,1,baseline,14.10378886348305
+Soybean Oil,208,1,full,9.234961205352446
+Soybean Oil,208,1,calendar_only,8.79846218643301
+Soybean Oil,221,14,baseline,14.753609539894644
+Soybean Oil,221,14,full,9.738787244683474
+Soybean Oil,221,14,calendar_only,9.242330979442054
+Soybean Oil,234,27,baseline,16.465888451992154
+Soybean Oil,234,27,full,12.369123251130967
+Soybean Oil,234,27,calendar_only,12.98512969777085
+Spices - Black Pepper,130,27,baseline,13.91764140365991
+Spices - Black Pepper,130,27,full,11.756740388540848
+Spices - Black Pepper,130,27,calendar_only,12.885010908271186
+Spices - Black Pepper,143,40,baseline,19.63564375013179
+Spices - Black Pepper,143,40,full,12.96280318014342
+Spices - Black Pepper,143,40,calendar_only,12.455894276169946
+Spices - Black Pepper,156,1,baseline,17.72423195597327
+Spices - Black Pepper,156,1,full,12.257046314589147
+Spices - Black Pepper,156,1,calendar_only,11.368778175743207
+Spices - Black Pepper,169,14,baseline,13.039813798095212
+Spices - Black Pepper,169,14,full,10.767689694198063
+Spices - Black Pepper,169,14,calendar_only,10.758667869113198
+Spices - Black Pepper,182,27,baseline,15.320478573182694
+Spices - Black Pepper,182,27,full,10.935144065292754
+Spices - Black Pepper,182,27,calendar_only,9.734011886877461
+Spices - Black Pepper,195,40,baseline,13.256154245719284
+Spices - Black Pepper,195,40,full,12.669539666428975
+Spices - Black Pepper,195,40,calendar_only,10.220809819089643
+Spices - Black Pepper,208,1,baseline,12.293597628726172
+Spices - Black Pepper,208,1,full,10.158074349209627
+Spices - Black Pepper,208,1,calendar_only,10.39484601884436
+Spices - Black Pepper,221,14,baseline,14.325656653640099
+Spices - Black Pepper,221,14,full,9.804970789472309
+Spices - Black Pepper,221,14,calendar_only,11.051516992857689
+Spices - Black Pepper,234,27,baseline,14.350468649648935
+Spices - Black Pepper,234,27,full,15.568807503479773
+Spices - Black Pepper,234,27,calendar_only,11.896547943322302
+Spices - Turmeric,130,27,baseline,12.046343632615482
+Spices - Turmeric,130,27,full,31.752286651602457
+Spices - Turmeric,130,27,calendar_only,10.096730751703967
+Spices - Turmeric,143,40,baseline,9.427590342777709
+Spices - Turmeric,143,40,full,9.580261694404127
+Spices - Turmeric,143,40,calendar_only,8.049365148078627
+Spices - Turmeric,156,1,baseline,11.649658843758546
+Spices - Turmeric,156,1,full,9.224654862034434
+Spices - Turmeric,156,1,calendar_only,11.496566637998434
+Spices - Turmeric,169,14,baseline,15.953292833632412
+Spices - Turmeric,169,14,full,11.71296738016335
+Spices - Turmeric,169,14,calendar_only,13.510054489196294
+Spices - Turmeric,182,27,baseline,18.503763246035845
+Spices - Turmeric,182,27,full,13.164123285525752
+Spices - Turmeric,182,27,calendar_only,14.478814949782729
+Spices - Turmeric,195,40,baseline,14.88396631987124
+Spices - Turmeric,195,40,full,13.1465540649862
+Spices - Turmeric,195,40,calendar_only,13.623623757781703
+Spices - Turmeric,208,1,baseline,12.659932380930888
+Spices - Turmeric,208,1,full,11.954822725763513
+Spices - Turmeric,208,1,calendar_only,11.307465206761526
+Spices - Turmeric,221,14,baseline,15.246784382325929
+Spices - Turmeric,221,14,full,15.1225979478987
+Spices - Turmeric,221,14,calendar_only,14.37638069295435
+Spices - Turmeric,234,27,baseline,13.972627578736935
+Spices - Turmeric,234,27,full,14.518766416008747
+Spices - Turmeric,234,27,calendar_only,13.712958275686304
+Sugar - Raw Brown,130,27,baseline,14.861352291311485
+Sugar - Raw Brown,130,27,full,9.756187754304417
+Sugar - Raw Brown,130,27,calendar_only,10.923323954894235
+Sugar - Raw Brown,143,40,baseline,14.972573448464493
+Sugar - Raw Brown,143,40,full,11.152335988475894
+Sugar - Raw Brown,143,40,calendar_only,11.060579653682288
+Sugar - Raw Brown,156,1,baseline,14.073515755172725
+Sugar - Raw Brown,156,1,full,9.924683257031376
+Sugar - Raw Brown,156,1,calendar_only,9.448849922530336
+Sugar - Raw Brown,169,14,baseline,11.692708997945553
+Sugar - Raw Brown,169,14,full,9.128908474525112
+Sugar - Raw Brown,169,14,calendar_only,8.235215353099306
+Sugar - Raw Brown,182,27,baseline,13.378847184506085
+Sugar - Raw Brown,182,27,full,12.576013535852043
+Sugar - Raw Brown,182,27,calendar_only,10.314326850654625
+Sugar - Raw Brown,195,40,baseline,14.602132687667108
+Sugar - Raw Brown,195,40,full,12.43591304993578
+Sugar - Raw Brown,195,40,calendar_only,12.453698483417467
+Sugar - Raw Brown,208,1,baseline,13.598236578366846
+Sugar - Raw Brown,208,1,full,12.638880434115835
+Sugar - Raw Brown,208,1,calendar_only,12.082516719430837
+Sugar - Raw Brown,221,14,baseline,12.480570059375633
+Sugar - Raw Brown,221,14,full,10.303106831952674
+Sugar - Raw Brown,221,14,calendar_only,10.223126831466956
+Sugar - Raw Brown,234,27,baseline,14.879951175510458
+Sugar - Raw Brown,234,27,full,10.206459028979781
+Sugar - Raw Brown,234,27,calendar_only,9.930687934287048
+Sugar - White Refined,130,27,baseline,13.080923109531273
+Sugar - White Refined,130,27,full,10.49304624094519
+Sugar - White Refined,130,27,calendar_only,11.057662451919597
+Sugar - White Refined,143,40,baseline,11.711940774830886
+Sugar - White Refined,143,40,full,6.818991192449876
+Sugar - White Refined,143,40,calendar_only,7.797981011319849
+Sugar - White Refined,156,1,baseline,11.154898544668935
+Sugar - White Refined,156,1,full,8.346614843869155
+Sugar - White Refined,156,1,calendar_only,9.736802217463968
+Sugar - White Refined,169,14,baseline,11.390235860155395
+Sugar - White Refined,169,14,full,14.448239605442817
+Sugar - White Refined,169,14,calendar_only,12.146351820557596
+Sugar - White Refined,182,27,baseline,13.197576486191753
+Sugar - White Refined,182,27,full,21.247888985543412
+Sugar - White Refined,182,27,calendar_only,11.470521048899517
+Sugar - White Refined,195,40,baseline,12.033222711256233
+Sugar - White Refined,195,40,full,11.503759972180834
+Sugar - White Refined,195,40,calendar_only,11.104558333536978
+Sugar - White Refined,208,1,baseline,12.962777679659387
+Sugar - White Refined,208,1,full,15.25271328102269
+Sugar - White Refined,208,1,calendar_only,14.643986748968738
+Sugar - White Refined,221,14,baseline,13.175727370780924
+Sugar - White Refined,221,14,full,12.60384823054546
+Sugar - White Refined,221,14,calendar_only,12.2196998135117
+Sugar - White Refined,234,27,baseline,10.139280620027321
+Sugar - White Refined,234,27,full,11.379557627187415
+Sugar - White Refined,234,27,calendar_only,8.189903947143193
+Sunflower Oil,130,27,baseline,15.220904110477246
+Sunflower Oil,130,27,full,10.835115880285064
+Sunflower Oil,130,27,calendar_only,11.195883734471558
+Sunflower Oil,143,40,baseline,12.924581510575855
+Sunflower Oil,143,40,full,9.286760259694388
+Sunflower Oil,143,40,calendar_only,10.081721432153357
+Sunflower Oil,156,1,baseline,13.89794665923395
+Sunflower Oil,156,1,full,11.901936269282391
+Sunflower Oil,156,1,calendar_only,11.218265401382494
+Sunflower Oil,169,14,baseline,14.640002525976985
+Sunflower Oil,169,14,full,11.585273382614151
+Sunflower Oil,169,14,calendar_only,12.009133947036785
+Sunflower Oil,182,27,baseline,14.509104602184658
+Sunflower Oil,182,27,full,11.82575236653375
+Sunflower Oil,182,27,calendar_only,11.665345326615835
+Sunflower Oil,195,40,baseline,13.766014849511985
+Sunflower Oil,195,40,full,13.651872453521191
+Sunflower Oil,195,40,calendar_only,11.985824616559542
+Sunflower Oil,208,1,baseline,15.09531984871098
+Sunflower Oil,208,1,full,14.486735440637602
+Sunflower Oil,208,1,calendar_only,12.062183771464987
+Sunflower Oil,221,14,baseline,13.897678930122515
+Sunflower Oil,221,14,full,10.576562213729977
+Sunflower Oil,221,14,calendar_only,10.541531133820653
+Sunflower Oil,234,27,baseline,11.003449743407355
+Sunflower Oil,234,27,full,9.116503564929294
+Sunflower Oil,234,27,calendar_only,9.648620282767606
+Tea - Black Ceylon,130,27,baseline,14.594650521755389
+Tea - Black Ceylon,130,27,full,9.956979685939334
+Tea - Black Ceylon,130,27,calendar_only,11.018784064955629
+Tea - Black Ceylon,143,40,baseline,15.831151127575035
+Tea - Black Ceylon,143,40,full,11.979970881176879
+Tea - Black Ceylon,143,40,calendar_only,12.515136860813453
+Tea - Black Ceylon,156,1,baseline,15.274905781930517
+Tea - Black Ceylon,156,1,full,11.805007900654788
+Tea - Black Ceylon,156,1,calendar_only,12.94654922698157
+Tea - Black Ceylon,169,14,baseline,12.005372692735428
+Tea - Black Ceylon,169,14,full,9.931959451822504
+Tea - Black Ceylon,169,14,calendar_only,10.382679229831318
+Tea - Black Ceylon,182,27,baseline,12.689980263511687
+Tea - Black Ceylon,182,27,full,13.022217141589493
+Tea - Black Ceylon,182,27,calendar_only,11.260368317047138
+Tea - Black Ceylon,195,40,baseline,16.08236715131923
+Tea - Black Ceylon,195,40,full,12.533489075783367
+Tea - Black Ceylon,195,40,calendar_only,11.246322488358706
+Tea - Black Ceylon,208,1,baseline,16.33846359857572
+Tea - Black Ceylon,208,1,full,11.495716871034036
+Tea - Black Ceylon,208,1,calendar_only,10.772642394576566
+Tea - Black Ceylon,221,14,baseline,13.474304745321744
+Tea - Black Ceylon,221,14,full,9.964352806931757
+Tea - Black Ceylon,221,14,calendar_only,9.389989262355897
+Tea - Black Ceylon,234,27,baseline,12.529332550349103
+Tea - Black Ceylon,234,27,full,10.969633496562652
+Tea - Black Ceylon,234,27,calendar_only,10.222123272611935
+Tea - Green,130,27,baseline,11.145023872035562
+Tea - Green,130,27,full,9.370185524801261
+Tea - Green,130,27,calendar_only,8.359047991668483
+Tea - Green,143,40,baseline,12.745015150167708
+Tea - Green,143,40,full,7.93889309982983
+Tea - Green,143,40,calendar_only,9.78037207554674
+Tea - Green,156,1,baseline,15.064384207716577
+Tea - Green,156,1,full,13.019855743519008
+Tea - Green,156,1,calendar_only,13.036210968233139
+Tea - Green,169,14,baseline,12.947839475196938
+Tea - Green,169,14,full,8.295330102718323
+Tea - Green,169,14,calendar_only,10.956097791265627
+Tea - Green,182,27,baseline,10.752792677598016
+Tea - Green,182,27,full,11.597810130319724
+Tea - Green,182,27,calendar_only,8.987247669993435
+Tea - Green,195,40,baseline,15.263589083645165
+Tea - Green,195,40,full,14.544105765378093
+Tea - Green,195,40,calendar_only,12.146689252467628
+Tea - Green,208,1,baseline,16.615735931883837
+Tea - Green,208,1,full,12.153465288130349
+Tea - Green,208,1,calendar_only,12.192907375663417
+Tea - Green,221,14,baseline,12.444493595198775
+Tea - Green,221,14,full,11.614269160561015
+Tea - Green,221,14,calendar_only,9.961253887001767
+Tea - Green,234,27,baseline,15.249154347776205
+Tea - Green,234,27,full,12.343043116844488
+Tea - Green,234,27,calendar_only,12.460800753265387
+Wheat - Hard Red,130,27,baseline,11.618332351383504
+Wheat - Hard Red,130,27,full,8.439516430640431
+Wheat - Hard Red,130,27,calendar_only,7.647222408618096
+Wheat - Hard Red,143,40,baseline,11.863276763529933
+Wheat - Hard Red,143,40,full,8.935892930556475
+Wheat - Hard Red,143,40,calendar_only,7.884799362255891
+Wheat - Hard Red,156,1,baseline,12.127649386395687
+Wheat - Hard Red,156,1,full,9.326017454275222
+Wheat - Hard Red,156,1,calendar_only,9.205643397273565
+Wheat - Hard Red,169,14,baseline,10.820517066363312
+Wheat - Hard Red,169,14,full,11.494397697911147
+Wheat - Hard Red,169,14,calendar_only,10.521458294377585
+Wheat - Hard Red,182,27,baseline,12.898287979914464
+Wheat - Hard Red,182,27,full,13.5996232119573
+Wheat - Hard Red,182,27,calendar_only,13.31970836884208
+Wheat - Hard Red,195,40,baseline,13.551552214164985
+Wheat - Hard Red,195,40,full,12.301084675396325
+Wheat - Hard Red,195,40,calendar_only,13.268596679586128
+Wheat - Hard Red,208,1,baseline,12.139520013796695
+Wheat - Hard Red,208,1,full,11.907919711077312
+Wheat - Hard Red,208,1,calendar_only,10.526985319807494
+Wheat - Hard Red,221,14,baseline,12.538475006756707
+Wheat - Hard Red,221,14,full,10.415824924987975
+Wheat - Hard Red,221,14,calendar_only,9.550153575228789
+Wheat - Hard Red,234,27,baseline,14.591803093760012
+Wheat - Hard Red,234,27,full,8.051926904838275
+Wheat - Hard Red,234,27,calendar_only,9.424052892170529
+Wheat - Soft,130,27,baseline,13.997181237211958
+Wheat - Soft,130,27,full,9.373427387352953
+Wheat - Soft,130,27,calendar_only,11.368532656112047
+Wheat - Soft,143,40,baseline,11.10082297492529
+Wheat - Soft,143,40,full,11.182734172553008
+Wheat - Soft,143,40,calendar_only,10.646534242114495
+Wheat - Soft,156,1,baseline,14.58814710854894
+Wheat - Soft,156,1,full,10.691838055095639
+Wheat - Soft,156,1,calendar_only,12.658277521421471
+Wheat - Soft,169,14,baseline,16.280079812543878
+Wheat - Soft,169,14,full,14.363124370401989
+Wheat - Soft,169,14,calendar_only,12.949020262105194
+Wheat - Soft,182,27,baseline,14.176473625923746
+Wheat - Soft,182,27,full,11.554127452860062
+Wheat - Soft,182,27,calendar_only,10.54179914522971
+Wheat - Soft,195,40,baseline,14.706970988989292
+Wheat - Soft,195,40,full,11.502516036125716
+Wheat - Soft,195,40,calendar_only,11.983607980235705
+Wheat - Soft,208,1,baseline,15.062975099291375
+Wheat - Soft,208,1,full,13.764208622792811
+Wheat - Soft,208,1,calendar_only,12.92020571748431
+Wheat - Soft,221,14,baseline,17.088368848689363
+Wheat - Soft,221,14,full,13.733248639964762
+Wheat - Soft,221,14,calendar_only,14.05321826355411
+Wheat - Soft,234,27,baseline,18.455652949380426
+Wheat - Soft,234,27,full,15.374680716508148
+Wheat - Soft,234,27,calendar_only,14.620238688322216
+Yeast - Dry,130,27,baseline,16.373209076978583
+Yeast - Dry,130,27,full,13.48238969642153
+Yeast - Dry,130,27,calendar_only,13.417908788200068
+Yeast - Dry,143,40,baseline,16.524783870649117
+Yeast - Dry,143,40,full,12.806587279671655
+Yeast - Dry,143,40,calendar_only,15.179454063887764
+Yeast - Dry,156,1,baseline,16.62155362618313
+Yeast - Dry,156,1,full,15.288587694012776
+Yeast - Dry,156,1,calendar_only,13.003008319286073
+Yeast - Dry,169,14,baseline,15.341960363155764
+Yeast - Dry,169,14,full,13.735656714114139
+Yeast - Dry,169,14,calendar_only,13.292093281158394
+Yeast - Dry,182,27,baseline,16.720123207585623
+Yeast - Dry,182,27,full,15.432756666035766
+Yeast - Dry,182,27,calendar_only,12.815615748535775
+Yeast - Dry,195,40,baseline,18.320941354726465
+Yeast - Dry,195,40,full,11.715080875634968
+Yeast - Dry,195,40,calendar_only,12.722775081054086
+Yeast - Dry,208,1,baseline,16.351956239134413
+Yeast - Dry,208,1,full,14.004810963154293
+Yeast - Dry,208,1,calendar_only,13.085567064455553
+Yeast - Dry,221,14,baseline,15.704507760587113
+Yeast - Dry,221,14,full,11.281483105931784
+Yeast - Dry,221,14,calendar_only,10.762020050751154
+Yeast - Dry,234,27,baseline,15.809682319474414
+Yeast - Dry,234,27,full,13.070234100755698
+Yeast - Dry,234,27,calendar_only,10.764318041428995
