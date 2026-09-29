@@ -88,6 +88,29 @@ band** (e.g., stay within ±X% of the median tracked competitor price for
 that commodity) — flagged here as a data limitation, not treated as a
 solved problem.
 
+**What triggers "High risk" in the first place**
+
+This isn't customer credit risk (this dataset has no real customer data — see Stage 3's limitations). It's a product-level proxy, computed earlier in kpis.py from two signals:
+
+Revenue volatility — how much a product's weekly revenue swings around relative to its own average (coefficient of variation)
+Stockout frequency — how often it's run out of stock in the last 26 weeks
+
+A product that's both volatile and frequently out of stock gets labeled "High" risk.
+
+**What the guardrail does with that label**
+
+The demand/inventory math (the earlier steps) computes a recommended price change — for example "lower the price by 13.1%" because inventory is high and demand is soft. Before that recommendation goes out, the code checks:
+
+if risk_label == "High" and the recommendation is a discount:
+    cancel the discount entirely → 0% change (keep price as-is)
+
+The reasoning in plain terms: if a product is unpredictable (revenue swings wildly) and keeps running out of stock, that's usually a sign of an underlying supply or demand problem — not something a price cut fixes. Discounting it to "chase volume" would:
+
+Erode margin on a product that's already financially unstable
+Encourage even more demand right as supply is already unreliable, making the next stockout worse, not better
+
+So the rule is essentially: don't put your least-stable products on sale — that's the opposite of what they need. Medium-risk products get a softer version (discount cut in half, not removed); Low-risk products get whatever the demand/inventory math recommends, unchanged.
+
 ## Calibration — what we tried, what broke, and the fix
 
 The first version used `α_demand = 0.20`, `α_inventory = 0.25`. Tested
